@@ -1,0 +1,107 @@
+<!doctype html>
+
+<html>
+
+	<head>
+		<title>Assessment Two</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+		<script src="src/xlsx.core.min.js"></script>		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">	
+		<script type="text/javascript" src="src/mask.js"></script>
+		
+
+	</head>
+
+	<body data-ng-app="timeLog">
+		<div data-ng-controller="Controller as con">
+		
+			<h1 ng-style="{'text-align':'center'}">Assessment 2</h1>
+			<div class="container-fluid">
+			
+				<form name="EnterLog" class="form-horizontal">
+					
+					<h3 class="input">Enter log</h3>
+					
+					<div class="form-group">
+						<label class="col-sm-2">Project:</label>
+
+							<input type="text" class="col-sm-2" ng-model="con.project" name="project" />
+	
+					</div>
+					
+					<div class="form-group">
+						<label class="col-sm-2">Phase:</label>
+
+							<input type="text" class="col-sm-2" ng-model="con.phase" name="phase" />
+	
+					</div>
+					
+					<div class="form-group">
+						<label class="col-sm-2">Date:</label>
+					
+							<input type="date"  ng-model="con.date"  class="col-sm-3"  name="date"/>
+					
+					</div>
+					
+					<div class="form-group">
+						<label class="col-sm-2">start:</label>
+					
+							<input type="text" ui-mask="99:99" placeholder="HH:mm" class="col-sm-3" model-value ng-model="con.start"  name="start" required />
+							<span style="color:red" ng-show="EnterLog.start.$invalid">
+							<span ng-show="EnterLog.start.$error.required" class="col-sm-3">Start time is required.</span></span>
+					
+					</div>
+					
+					<div class="form-group">
+						<label class="col-sm-2">Interval:</label>
+						
+							<input type="text" ui-mask="99:99" placeholder="HH:mm" class="col-sm-3" ng-model="con.interval" model-value/>
+					
+					</div>
+					
+					<div class="form-group">
+						<label class="col-sm-2">Stop:</label>
+						
+							<input type="text" ui-mask="99:99" placeholder="HH:mm" class="col-sm-3" model-value ng-model="con.stop" name="stop" required />
+							<span style="color:red" ng-show="EnterLog.stop.$invalid">
+							<span ng-show="EnterLog.stop.$error.required" class="col-sm-3">Stop time is required.</span></span>
+						
+					</div>
+					
+					<div class="form-group">
+						<label class="col-sm-2">Comment:</label>
+						
+							<input type="text" class="col-sm-6" ng-model="con.comment" name="comment"/>
+						
+					</div>
+					
+					<input type="submit" class="btn btn-default" value="Submit" ng-click="EnterLog.stop.$valid && EnterLog.start.$valid && con.submitContent()" />				
+					<input type="submit" class="btn btn-default" value="Save" ng-click="con.portfolio.saveProjects()" />	
+					<input type="submit" class="btn btn-default" value="load" ng-click="con.portfolio.loadProjects()" />
+					<input type="submit" class="btn btn-default" value="Show" ng-click="con.show()" />							
+				</form><br>
+					<input type="file" data-on-read-file="con.showContent(fileContent)" />
+				
+				<div>
+					
+				
+				</div>
+			
+			<fieldset>
+				<time-log-table>
+			</fieldset>
+			</div>
+		</div>
+		
+		<script src="src/log.js"></script>
+		<script src="src/phase.js"></script>
+		<script src="src/project.js"></script>
+		<script src="src/portfolio.js"></script>
+		<script src="src/dynamictable-directive.js"></script>
+		<script src="src/model-value-directive.js"></script>
+		<script src="src/onreadfile-directive.js"></script>
+		<script src="src/controller.js"></script>
+		<script src="src/main.js"></script>
+	</body>
+
+</html>
